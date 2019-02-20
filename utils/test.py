@@ -1,4 +1,3 @@
-
 from utils.configparserUtil import ConfigUtils
 
 def alam():
@@ -6,4 +5,5 @@ def alam():
     cu.set_section_key_value('PLMPage', "ecn_number", "123123")
     print(ConfigUtils("testdata").get_values_by_key('PLMPage', "ecn_number"))
 
-alam()
+if __name__ == '__main__':
+    alam()
