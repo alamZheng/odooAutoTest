@@ -7,3 +7,4 @@ def alam():
 
 if __name__ == '__main__':
     alam()
+    print(123)
