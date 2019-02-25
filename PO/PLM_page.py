@@ -159,14 +159,16 @@ class PLMPage(base_page.BasePage):
     def click_ecn_tap(self):
         print(sys._getframe().f_code.co_name)
         self.find_element(*self.wuliao_method_tap_lco).click()
-        time.sleep(2)  # 等待5秒，页面加载完成
+        time.sleep(5)  # 等待5秒，页面加载完成
 
     def select_lm_handling(self,optionIndex=3):
         '''
         "normal":可正常使用;"rework":返工后使用;"return":退换货;"scrapped":申请报废;"other":其他
         '''
         print(sys._getframe().f_code.co_name)
-        # self.find_element(By.XPATH,"//div[@id='notebook_page_32']/div[2]/div[2]/div[2]/table/tbody/tr/td[3]").click()
+        time.sleep(3)
+        print(self.find_element(By.XPATH, "//div[@id='notebook_page_32']/div[2]/div[2]/div[2]/table/tbody/tr/td[3]").isDisplayed())
+        self.find_element(By.XPATH,"//div[@id='notebook_page_32']/div[2]/div[2]/div[2]/table/tbody/tr/td[3]").click()
         self.find_element(By.NAME,"lm_handling").click()
         self.find_element(By.XPATH, "//option[@value='\"return\"']").click()
         time.sleep(2)

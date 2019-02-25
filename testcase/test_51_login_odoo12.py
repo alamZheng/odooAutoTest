@@ -2,7 +2,7 @@ import unittest
 from selenium import webdriver
 import sys
 sys.path.append("..")
-from PO.login_page import LoginPage
+from PO.login_page_odoo12 import LoginPage
 import time
 
 class TestLogin(unittest.TestCase):
@@ -29,17 +29,19 @@ class TestLogin(unittest.TestCase):
         sp.add_img(self.imgs)
         # self.assertEqual(sp.get_username(),"hanxiaobei",msg="验证失败！")
 
+    @unittest.skip("had tested")
     def test_login_02_customer(self):
         """登录自定义的账户和密码"""
         # print("111")
         sp = LoginPage(self.driver)
 
         # sp.open(self.url)
-        sp.login("andy.yang@aqara.com","123456")
+        sp.login("admin","admin")
         # self.add_img()
         sp.add_img(self.imgs)
         # self.assertEqual(sp.get_username(),"hanxiaobei",msg="验证失败！")
 
+    @unittest.skip("had tested")
     def test_login_03_wrongPWD(self):
         """登录自定义的账户和密码"""
         # print("111")
@@ -52,6 +54,7 @@ class TestLogin(unittest.TestCase):
         print(sp.get_alert_msg())
         self.assertEqual(sp.get_alert_msg(),"错误的登录名/密码",msg="验证失败！")
 
+    @unittest.skip("had tested")
     def test_login_04_wrongUser(self):
         """登录自定义的账户和密码"""
         # print("111")
@@ -64,25 +67,6 @@ class TestLogin(unittest.TestCase):
         # print(sp.get_alert_msg())
         self.assertEqual(sp.get_alert_msg(),"错误的登录名/密码",msg="验证失败！")
 
-    def test_login_05_accessReset(self):
-        """登录自定义的账户和密码"""
-        # print("111")
-        sp = LoginPage(self.driver)
-
-        # sp.open(self.url)
-        sp.reset()
-        # self.add_img()
-        sp.add_img(self.imgs)
-
-    def test_login_06_accessRegister(self):
-        """登录自定义的账户和密码"""
-        # print("111")
-        sp = LoginPage(self.driver)
-
-        # sp.open(self.url)
-        sp.register()
-        # self.add_img()
-        sp.add_img(self.imgs)
 
 if __name__ == '__main__':
     unittest.main()

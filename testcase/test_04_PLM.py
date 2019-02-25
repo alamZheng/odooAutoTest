@@ -24,7 +24,7 @@ class TestPLM(unittest.TestCase):
         # pass
         self.driver.quit()
 
-    @unittest.skip("had tested")
+    # @unittest.skip("had tested")
     def test_01_oe_dashboard(self):
         """测试PLM 正常进入PLM页面"""
         globals()['sp'].login("qingbin.tao@aqara.com", "123456")
@@ -36,7 +36,7 @@ class TestPLM(unittest.TestCase):
         pp.add_img(self.imgs)
         # self.add_img()
 
-    @unittest.skip("had tested")
+    # @unittest.skip("had tested")
     def test_02_ecn_new_withoutUpdate(self):
         """测试 新建ecn 不更新BOM提交会提示"""
 
@@ -51,7 +51,7 @@ class TestPLM(unittest.TestCase):
         pp.add_img(self.imgs)
         # self.add_img()
 
-    @unittest.skip("had tested")
+    # @unittest.skip("had tested")
     def test_03_ecn_with_add_wuliao(self):
         """测试 新建ecn with添加物料到BOM"""
 
@@ -82,7 +82,7 @@ class TestPLM(unittest.TestCase):
         ("jialiang.lian@aqara.com"),
         ("qiping.hu@aqara.com"),
     ])
-    @unittest.skip("had tested")
+    # @unittest.skip("had tested")
     def test_05_ecn_with_add_wuliao_02345678node_without_coo(self, node01_name):
         "测试ecn with添加物料到BOM单的第2345678个节点"
         globals()['sp'].login(node01_name, "123456")
@@ -94,7 +94,7 @@ class TestPLM(unittest.TestCase):
         pp.approval_02345678node()
         pp.add_img(self.imgs)
 
-    @unittest.skip("had tested")
+    # @unittest.skip("had tested")
     def test_06_ecn_with_add_wuliao_last_node_without_coo(self, lastNode_name="qiping.hu@aqara.com"):
         """测试ecn with添加物料到BOM单的最后应用变更节点"""
         globals()['sp'].login(lastNode_name, "123456")
