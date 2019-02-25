@@ -10,7 +10,7 @@ report_path = ".\\report\\report"+timeString+".html"
 
 def creat_suite():
     uit = unittest.TestSuite()
-    discover = unittest.defaultTestLoader.discover(testcase_path,pattern="test_04*.py")
+    discover = unittest.defaultTestLoader.discover(testcase_path,pattern="test_51*.py")
     for test_suite in discover:
         # print(test_suite)
         for test_case in test_suite:
