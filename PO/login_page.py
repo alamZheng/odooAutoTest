@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import sys
 sys.path.append("..")
 from PO import base_page
-from utils.configparserUtil import ConfigUtils
+from utils.Util_configparser import ConfigUtils
 import time
 
 class LoginPage(base_page.BasePage):

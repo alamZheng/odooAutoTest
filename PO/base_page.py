@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding:utf-8 -*-
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys 
 from selenium.webdriver.support.ui import Select
@@ -45,12 +47,12 @@ class BasePage(object):
         except AttributeError:
             print(u'找不到元素:'+str(loc))
 
-    def send_enter(self,*loc):
-        try:
-            time.sleep(5)
-            self.find_element(*loc).send_keys(Keys.ENTER)
-        except AttributeError:
-            print("未找到%s"%(self,*loc))
+    # def send_enter(self,*loc):
+    #     try:
+    #         time.sleep(5)
+    #         self.find_element(*loc).send_keys(Keys.ENTER)
+    #     except AttributeError:
+    #         print("未找到%s"%(self,*loc))
 
     # def take_screenshot(self):
     #     timeString =str(time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()))
@@ -61,9 +63,9 @@ class BasePage(object):
         imgs.append(self.driver.get_screenshot_as_base64())
         return True
 
-    def select_dropdown(self,*loc,optionName):
-        try:
-            Select(self.find_element(*loc)).select_by_visible_text(optionName)
-        except AttributeError:
-            print("select_dropdown未找到%s"%(self,loc))
+    # def select_dropdown(self,*loc,optionName):
+    #     try:
+    #         Select(self.find_element(*loc)).select_by_visible_text(optionName)
+    #     except AttributeError:
+    #         print("select_dropdown未找到%s"%(self,loc))
         

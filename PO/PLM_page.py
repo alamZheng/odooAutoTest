@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import Select
 import sys
 sys.path.append("..")
 from PO import base_page
-from utils.configparserUtil import ConfigUtils
+from utils.Util_configparser import ConfigUtils
 import time
 
 class PLMPage(base_page.BasePage):

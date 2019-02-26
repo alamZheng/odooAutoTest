@@ -7,7 +7,7 @@ from PO.index_page import IndexPage
 from PO.PLM_page import PLMPage
 from PO.approval_page import ApprovalPage
 from parameterized import parameterized
-from utils.configparserUtil import ConfigUtils
+from utils.Util_configparser import ConfigUtils
 import time
 
 class TestPLM(unittest.TestCase):
