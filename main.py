@@ -1,24 +1,49 @@
+# coding=utf-8
 import unittest
 import HTMLTestRunner_cn as HTMLTestRunner
+import os
+
 import time
+from tomorrow import threads
 
-#相对路径
-testcase_path = ".\\testcase"
-# timeString =str(time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()))
-timeString =str(time.strftime("%Y-%m-%d", time.localtime()))
-report_path = ".\\report\\report"+timeString+".html"
+# python2需要这三行，python3不需要
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
-def creat_suite():
-    uit = unittest.TestSuite()
-    discover = unittest.defaultTestLoader.discover(testcase_path,pattern="test_51*.py")
-    for test_suite in discover:
-        # print(test_suite)
-        for test_case in test_suite:
-            uit.addTest(test_case)
-    return uit
+# 获取路径
+curpath = os.path.dirname(os.path.realpath(__file__))
+casepath = os.path.join(curpath, "testcase")
+reportpath = os.path.join(curpath, "report")
 
-suite = creat_suite()
-fp = open(report_path,"wb")
-runner = HTMLTestRunner.HTMLTestRunner(stream=fp,title="测试结果",description="测试搜索结果")
-runner.run(suite)
-fp.close()
+
+def add_case(case_path=casepath, rule="test_5*.py"):
+    '''加载所有的测试用例'''
+    discover = unittest.defaultTestLoader.discover(case_path,
+                                                   pattern=rule,
+                                                   top_level_dir=None)
+    return discover
+
+
+@threads(3)
+def run_case(all_case, report_path=reportpath, nth=0):
+    '''执行所有的用例, 并把结果写入测试报告'''
+    now = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
+    report_abspath = os.path.join(report_path, "result_" + now + "_" + str(nth) + ".html")
+    fp = open(report_abspath, "wb")
+    runner = HTMLTestRunner.HTMLTestRunner(stream=fp,
+                                           title=u'自动化测试报告,测试结果如下：',
+                                           description=u'用例执行情况：')
+
+    # 调用add_case函数返回值
+    runner.run(all_case)
+    fp.close()
+
+
+if __name__ == "__main__":
+    # 用例集合
+    cases = add_case()
+
+    # 之前是批量执行，这里改成for循环执行
+    for i, j in zip(cases, range(len(list(cases)))):
+        run_case(i, nth=j)  # 执行用例，生成报告

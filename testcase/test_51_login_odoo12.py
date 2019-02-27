@@ -1,16 +1,20 @@
+#!/usr/bin/python
+# -*- coding:utf-8 -*-
 import unittest
 from selenium import webdriver
 import sys
 sys.path.append("..")
 from PO.login_page_odoo12 import LoginPage
+from utils.Util_screenshot import Screen
 import time
 
 class TestLogin(unittest.TestCase):
     imgs=[]
+    driver = webdriver.Chrome()
     """UI自动化登录"""
     def setUp(self):
         # print("setup")
-        # self.url = "http://192.168.100.26:8069/web/login"
+        # url = "http://192.168.100.26:8069/web/login"
         self.driver = webdriver.Chrome()
         # self.driver = webdriver.PhantomJS()
         # self.driver.implicitly_wait(5)
@@ -19,10 +23,10 @@ class TestLogin(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
+    @Screen(driver)
     def test_login_01_default(self):
         """登录"""
         sp = LoginPage(self.driver)
-
         # sp.open(self.url)
         sp.login()
         # self.add_img()

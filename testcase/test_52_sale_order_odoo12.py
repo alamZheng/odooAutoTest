@@ -8,6 +8,9 @@ import unittest
 from selenium import webdriver
 import sys
 sys.path.append("..")
+# python2需要这三行，python3不需要
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 
 class TestSaleOrder(unittest.TestCase):
@@ -30,7 +33,7 @@ class TestSaleOrder(unittest.TestCase):
         # pass
         self.driver.quit()
 
-    @unittest.skip("had tested")
+    # @unittest.skip("had tested")
     def test_01_access_sale_order_withURL(self):
         """登录"""
         sop = SaleOrderPage(self.driver)
