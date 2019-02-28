@@ -50,7 +50,7 @@ class TestSaleOrder(unittest.TestCase):
         ("access_menu_platform_backend", "Platform Backend"),
 
     ])
-    @unittest.skip("had tested")
+    # @unittest.skip("had tested")
     def test_02_access_menu_(self, method, assertContent):
         """登录"""
         sop = SaleOrderPage(self.driver,)
