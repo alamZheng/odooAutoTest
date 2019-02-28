@@ -36,7 +36,7 @@ class TestLogin(unittest.TestCase):
     def tearDownClass(self):
         self.driver.quit()
 
-    @Screen(driver)
+    # @Screen(driver)
     def test_login_01_default(self):
         """登录"""
         log.info("---test_login_01_default----")
