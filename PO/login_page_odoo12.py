@@ -14,6 +14,7 @@ sys.path.append("..")
 class LoginPage(base_page.BasePage):
     name_loc = (By.ID, "login")
     password_loc = (By.ID, "password")
+    # submit_loc = (By.XPATH,'button[contains(text(), "登录")]')
     submit_loc = (By.XPATH, "/html/body/div/div/div/form/div[3]/button")
     LoginPage_url = "http://192.168.100.26:8899/web/login"
     alert_loc = (By.XPATH, '/html/body/div/div/div/form/p')
@@ -24,14 +25,14 @@ class LoginPage(base_page.BasePage):
     #     self.find_element(*self.link_loc).click()
     #     time.sleep(3)           #等待3秒，等待登录弹窗加载完成
 
-    def login(self, name_value="admin", pwd_value="123456"):
+    def login(self, name_value="alam@aqara.com", pwd_value="111111"):
         print(sys._getframe().f_code.co_name)
         self.open(self.LoginPage_url)
         self.find_element(*self.name_loc).send_keys(name_value)
         self.find_element(*self.password_loc).send_keys(pwd_value)
-        time.sleep(2)  # 手动输入验证码
+        # time.sleep(2)  # 手动输入验证码
         self.find_element(*self.submit_loc).click()
-        time.sleep(5)  # 等待5秒，登录后的页面加载完成
+        time.sleep(2)  # 等待5秒，登录后的页面加载完成
 
     user_icon_loc = (By.XPATH, "//li[4]/a/span")
     logout_loc = (By.LINK_TEXT, u"登出")
