@@ -21,17 +21,23 @@ class TestPLM(unittest.TestCase):
     imgs = []
     """PLM"""
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         # print("setup")
         self.driver = webdriver.Chrome()
         # self.driver = webdriver.PhantomJS()
         globals()['sp'] = LoginPage(self.driver)
 
     def tearDown(self):
+        globals()['sp'].logout()
         # pass
+        # self.driver.quit()
+
+    @classmethod
+    def tearDownClass(self):
         self.driver.quit()
 
-    @unittest.skip("had tested")
+    # @unittest.skip("had tested")
     def test_01_oe_dashboard(self):
         """测试PLM 正常进入PLM页面"""
         globals()['sp'].login("qingbin.tao@aqara.com", "123456")
@@ -77,17 +83,9 @@ class TestPLM(unittest.TestCase):
         ecn_id = ConfigUtils("testdata").get_values_by_key('PLMPage', "ecn_id")
         pp = PLMPage(self.driver)
         pp.open("http://192.168.100.26:8069/web#id=" + str(ecn_id) + "&view_type=form&model=mrp.eco&action=1113&active_id=1")
-        pp.approval_01node()
+        pp.approval_01node_add()
         pp.add_img(self.imgs)
 
-    # @parameterized.expand([
-    #     "chun.fu@aqara.com",
-    #     "ying.xiao@aqara.com",
-    #     "meiping.huang@aqara.com",
-    #     "heyang.yan@aqara.com",
-    #     "jialiang.lian@aqara.com",
-    #     "qiping.hu@aqara.com",
-    # ])
     @parameterized.expand([
                  ("chun.fu@aqara.com"),
                  ("ying.xiao@aqara.com"),
@@ -108,7 +106,7 @@ class TestPLM(unittest.TestCase):
         pp.approval_02345678node()
         pp.add_img(self.imgs)
 
-    # @unittest.skip("had tested")
+    @unittest.skip("had tested")
     def test_06_ecn_with_add_wuliao_last_node_without_coo(self, lastNode_name="qiping.hu@aqara.com"):
         """测试ecn with添加物料到BOM单的最后应用变更节点"""
         globals()['sp'].login(lastNode_name, "123456")
@@ -120,6 +118,29 @@ class TestPLM(unittest.TestCase):
         print(ecn_id)
         pp.open("http://192.168.100.26:8069/web#id=" + str(ecn_id) + "&view_type=form&model=mrp.eco")
         pp.apply_ecn()
+        pp.add_img(self.imgs)
+
+    @unittest.skip("had tested")
+    def test_07_ecn_with_delete_wuliao(self):
+        """测试 新建ecn with添加物料到BOM"""
+
+        globals()['sp'].login("qingbin.tao@aqara.com", "123456")
+        pp = PLMPage(self.driver)
+        pp.access_PLM_page()
+        pp.click_oe_dashboard()
+        pp.create_ecn_with_delete()
+        pp.add_img(self.imgs)
+
+    @unittest.skip("had tested")
+    def test_08_ecn_with_delete_wuliao_01node(self, node01_name="qingbin.tao@aqara.com"):
+        "测试ecn with添加物料到BOM单的第一个节点"
+
+        globals()['sp'].login(node01_name, "123456")
+        ecn_id = ConfigUtils("testdata").get_values_by_key('PLMPage', "ecn_id")
+        pp = PLMPage(self.driver)
+        pp.open("http://192.168.100.26:8069/web#id=" + str(
+            ecn_id) + "&view_type=form&model=mrp.eco&action=1113&active_id=1")
+        pp.approval_01node_delete()
         pp.add_img(self.imgs)
 
 
