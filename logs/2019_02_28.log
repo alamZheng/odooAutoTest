@@ -1,0 +1,8 @@
+[2019-02-28 11:40:33,770] - Logger.py] - INFO: ---test_login_01_default----
+[2019-02-28 11:40:46,163] - Logger.py] - INFO: ---test_login_02_customer----
+[2019-02-28 16:16:54,437] - Logger.py] - INFO: ---test_login_01_default----
+[2019-02-28 16:22:21,611] - Logger.py] - INFO: ---test_login_01_default----
+[2019-02-28 16:22:32,855] - Logger.py] - INFO: ---test_login_02_customer----
+[2019-02-28 16:30:23,756] - Logger.py] - INFO: ---test_login_01_default----
+[2019-02-28 16:30:56,930] - Logger.py] - INFO: ---test_login_01_default----
+[2019-02-28 16:32:39,605] - Logger.py] - INFO: ---test_login_01_default----

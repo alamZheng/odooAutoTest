@@ -1,0 +1,9 @@
+[2019-03-05 15:21:10,986] - Logger.py] - INFO: ---test_login_01_default----
+[2019-03-05 17:01:07,926] - Logger.py] - INFO: ---测试开始----
+[2019-03-05 17:01:07,928] - Logger.py] - WARNING: ----测试结束----
+[2019-03-05 17:01:21,535] - Logger.py] - INFO: ---test_login_01_default----
+[2019-03-05 17:02:12,759] - Logger.py] - INFO: test_login_01_default
+[2019-03-05 17:05:29,579] - Logger.py] - INFO: {15428: <frame object at 0x0000000004E06200>}
+[2019-03-05 17:05:29,585] - Logger.py] - INFO: test_login_01_default
+[2019-03-05 17:07:02,160] - Logger.py] - INFO: TestLogin
+[2019-03-05 17:07:02,164] - Logger.py] - INFO: test_login_01_default
