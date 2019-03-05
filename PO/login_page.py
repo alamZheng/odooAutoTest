@@ -50,6 +50,11 @@ class LoginPage(base_page.BasePage):
         self.open(self.LoginPage_url)
         self.find_element(*self.register_loc).click()
 
+    user_icon_loc = (By.XPATH, "//div[2]/ul/li/a/span")
+    logout_loc = (By.LINK_TEXT, u"注销")
 
+    def logout(self):
+        self.find_element(*self.user_icon_loc).click()
+        self.find_element(*self.logout_loc).click()
     # def get_username(self):
     #     return self.find_element(*self.username_top).text
