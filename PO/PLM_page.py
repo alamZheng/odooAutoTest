@@ -27,6 +27,7 @@ class PLMPage(base_page.BasePage):
     wuliao_list_loc = (By.XPATH, "(//button[@type='button'])[27]")
     edit_wuliao_loc = (By.XPATH, "(//button[@type='button'])[7]")
     add_wuliao_loc = (By.LINK_TEXT, "添加项目")
+    # add_wuliao_loc = (By., "添加项目")
     add_wuliao_name_loc = (By.XPATH, "(//input[@type='text'])[10]")
     add_wuliao_number1_loc = (By.XPATH, "(//input[@type='text'])[11]")
     add_wuliao_number2_loc = (By.XPATH, "(//input[@type='text'])[12]")
@@ -190,6 +191,30 @@ class PLMPage(base_page.BasePage):
         self.find_element(By.XPATH, "(//option[@value='\"other\"'])[3]").click()
         time.sleep(2)
 
+    def select_storage_handling(self, optionIndex=3):
+        '''
+        "normal":可正常使用;"rework":返工后使用;"return":退换货;"scrapped":申请报废;"other":其他
+        '''
+        print(sys._getframe().f_code.co_name)
+        time.sleep(3)
+        temp = self.lm_handling_loc
+        temp =self.lm_handling_loc.replace("[2]", "", 1)
+        print(self.lm_handling_loc)
+        self.find_element(By.XPATH, temp).click()
+        self.find_element(By.NAME, "storage_handling").click()
+        self.find_element(By.XPATH, "//option[@value='\"return\"']").click()
+        time.sleep(2)
+
+    def select_manufacturing_handling(self, optionIndex=3):
+        print(sys._getframe().f_code.co_name)
+        self.find_element(By.XPATH, "(//option[@value='\"other\"'])[2]").click()
+        time.sleep(2)
+
+    def select_po_handling(self, optionIndex=3):
+        print(sys._getframe().f_code.co_name)
+        self.find_element(By.XPATH, "(//option[@value='\"other\"'])[3]").click()
+        time.sleep(2)
+
     def click_ecn_save(self):
         print(sys._getframe().f_code.co_name)
         self.find_element(*self.save_ecn_loc).click()
@@ -244,15 +269,54 @@ class PLMPage(base_page.BasePage):
         self.click_ecnNO()
         self.click_approval()
 
+    delete_wuliao_loc =(By.XPATH, "//div[@id='notebook_page_47']/div/div[2]/div[2]/table/tbody/tr[3]/td[16]/span")
+    tap_loc =(By.LINK_TEXT,"部件")
+    def click_delete_wuliao(self):
+        print(sys._getframe().f_code.co_name)
+        tap_id=self.find_element(*self.tap_loc).get_attribute("href")
+        print(tap_id)
+        ecn_tap_href = tap_id[-16:]
+        delete_wuliao_loc = (By.XPATH, "//div[@id='"+ecn_tap_href+"']/div/div[2]/div[2]/table/tbody/tr[3]/td[16]/span")
+        self.find_element(*self.delete_wuliao_loc).click()
+        time.sleep(2)  # 等待5秒，页面加载完成
+
+    def create_ecn_with_delete(self):
+        self.new_eco()
+        self.type_product()
+        self.type_submitter()
+        self.type_change()
+        self.type_action()
+        self.click_start()
+        self.save_new_ecn_number()
+        self.click_wuliao_list()
+        self.click_edit_wuliao()
+        self.click_delete_wuliao()
+        self.click_save_wuliao()
+        self.click_ecnNO()
+        self.click_approval()
+
     _new_msg_loc = '/html/body/div[1]/div/div[2]/div/div/div[6]/div[1]/button[1]'
 
-    def approval_01node(self):
+    def approval_01node_add(self):
         self.click_edit_wuliao()
         self.find_element(By.XPATH, self._new_msg_loc).send_keys(Keys.DOWN)
         self.click_ecn_tap()
         self.select_lm_handling()
         self.select_factory_handling()
         self.select_shipped_handling()
+        self.click_ecn_save()
+        self.click_ecn_01node_approval()
+
+    def approval_01node_delete(self):
+        self.click_edit_wuliao()
+        self.find_element(By.XPATH, self._new_msg_loc).send_keys(Keys.DOWN)
+        self.click_ecn_tap()
+        self.select_lm_handling()
+        self.select_factory_handling()
+        self.select_shipped_handling()
+        self.select_storage_handling()
+        self.select_manufacturing_handling()
+        self.select_po_handling()
         self.click_ecn_save()
         self.click_ecn_01node_approval()
 
