@@ -12,7 +12,7 @@ sys.path.append("..")
 log = Log()
 
 
-class TestLogin(unittest.TestCase):
+class Test_login_page_odoo12(unittest.TestCase):
 
     imgs = []
     driver = webdriver.Chrome()
@@ -37,17 +37,18 @@ class TestLogin(unittest.TestCase):
         self.driver.quit()
 
     # @Screen(driver)
+    # @unittest.skip("had tested")
     def test_login_01_default(self):
         """登录"""
-        log.info("---test_login_01_default----")
+        log.info(self.__class__.__name__)
+        log.info(sys._getframe().f_code.co_name)
         sp = LoginPage(self.driver)
-        # sp.open(self.url)
         sp.login()
         # self.add_img()
         sp.add_img(self.imgs)
         # self.assertEqual(sp.get_username(),"hanxiaobei",msg="验证失败！")
 
-    # @unittest.skip("had tested")
+    @unittest.skip("had tested")
     def test_login_02_customer(self):
         """登录自定义的账户和密码"""
         log.info("---test_login_02_customer----")
@@ -62,9 +63,7 @@ class TestLogin(unittest.TestCase):
     @unittest.skip("had tested")
     def test_login_03_wrongPWD(self):
         """登录自定义的账户和密码"""
-        # print("111")
         sp = LoginPage(self.driver)
-
         # sp.open(self.url)
         sp.login("andy.yang@aqara.com", "111111")
         # self.add_img()
