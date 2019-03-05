@@ -13,7 +13,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 
-class TestSaleOrder(unittest.TestCase):
+class Test_saleOrder_page_odoo12(unittest.TestCase):
     imgs = []
     """UI自动化登录"""
 
