@@ -10,7 +10,7 @@ from PO import base_page
 from utils.Util_configparser import ConfigUtils
 import time
 
-class LoginPage(base_page.BasePage):
+class odoo10_Login_Page(base_page.BasePage):
     # name_loc = cu.get_values_by_key('LoginPage',"name_loc")
     # print(type(name_loc))
     # print(name_loc)
@@ -31,13 +31,24 @@ class LoginPage(base_page.BasePage):
     #     self.find_element(*self.link_loc).click()
     #     time.sleep(3)           #等待3秒，等待登录弹窗加载完成
 
-    def login(self,name_value="dade.zhan@aqara.com",pwd_value="123456"):
+    def access_login_page(self):
         self.open(self.LoginPage_url)
+
+    def type_username(self,name_value):
         self.find_element(*self.name_loc).send_keys(name_value)
+
+    def type_pwd(self,pwd_value):
         self.find_element(*self.password_loc).send_keys(pwd_value)
-        time.sleep(2)          #手动输入验证码
-        self.find_element(*self.submit_loc).click()   
-        time.sleep(5)          #等待5秒，登录后的页面加载完成
+
+    def click_login(self):
+        self.find_element(*self.submit_loc).click()
+        # def login(self,name_value="dade.zhan@aqara.com",pwd_value="123456"):
+    #     self.open(self.LoginPage_url)
+    #     self.find_element(*self.name_loc).send_keys(name_value)
+    #     self.find_element(*self.password_loc).send_keys(pwd_value)
+    #     time.sleep(2)          #手动输入验证码
+    #     self.find_element(*self.submit_loc).click()
+    #     time.sleep(5)          #等待5秒，登录后的页面加载完成
 
     def get_alert_msg(self):
         return self.find_element(*self.alert_loc).text
@@ -58,3 +69,11 @@ class LoginPage(base_page.BasePage):
         self.find_element(*self.logout_loc).click()
     # def get_username(self):
     #     return self.find_element(*self.username_top).text
+
+if __name__ == '__main__':
+    from selenium import webdriver
+    driver = webdriver.Chrome()
+    import sys
+    sys.path.append("..")
+    lp=odoo10_Login_Page(driver)
+    lp.access_login_page()
